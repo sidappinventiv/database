@@ -1,0 +1,42 @@
+﻿-- CREATE TABLE users(
+--   user_id INT PRIMARY KEY,
+--   name VARCHAR(50),
+--   age INT,
+--   username VARCHAR(50) UNIQUE,
+--   emailId VARCHAR(100) UNIQUE
+-- );
+
+-- CREATE TABLE followers (
+--   follow_id INT,
+--   following_id INT,
+--   FOREIGN KEY (follow_id) REFERENCES Users(user_id) ,
+--   FOREIGN KEY (following_id) REFERENCES Users(user_id) 
+     
+-- );
+
+-- INSERT INTO users VALUES(1,'shiv',18,'shiv_01','shiv01@gmail.com'),
+-- (2,'sana',21,'sana_01','sana01@gmail.com'),
+-- (3,'anya',34,'anya_05','anya05@gmail.com'),
+-- (4,'manya',20,'manya_01','manya01@gmail.com'),
+-- (5,'shiv',18,'shiv_06','shiv06@gmail.com')
+
+SELECT * FROM followers;
+
+-- ALTER TABLE followers
+-- ADD follow BIT,
+-- ADD follow_back BIT;
+//folower followed user
+-- INSERT INTO followers (follow_id, following_id, follow)
+-- VALUES (1, 2,'1') ;
+
+//updated the follower who followed back
+-- UPDATE followers
+-- SET follow_back = '1'
+-- WHERE follow_id = 1 AND following_id = 2;
+//inserted new id
+-- INSERT INTO followers (follow_id, following_id, follow)
+-- VALUES (1, 4,'1') ,(2,3,'0'),(4,3,'1');
+
+counting the number of followers of the particualr user
+--SELECT COUNT(*) AS total_follow FROM followers WHERE following_id = 3;
+--SELECT COUNT(*) AS total FROM followers WHERE follow_id = 3;
