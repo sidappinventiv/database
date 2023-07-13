@@ -1,0 +1,87 @@
+﻿-- CREATE TABLE Authors (
+--   author_id INT PRIMARY KEY,
+--   name VARCHAR(255),
+--   email VARCHAR(255),
+--   bio TEXT,
+--   created_at DATE,
+--   updated_at DATE
+-- );
+-- CREATE TABLE Categories (
+--   category_id INT PRIMARY KEY,
+--   name VARCHAR(255)
+-- );
+
+
+-- CREATE TABLE Articles (
+--   article_id INT PRIMARY KEY,
+--   title VARCHAR(255),
+--   content TEXT,
+--   author_id INT,
+--   category_id INT,
+--   published_at DATE,
+--   created_at DATE,
+--   updated_at DATE,
+--   FOREIGN KEY (author_id) REFERENCES Authors(author_id),
+--   FOREIGN KEY (category_id) REFERENCES Categories(category_id)
+-- );
+
+-- CREATE TABLE Comments (
+--   comment_id INT PRIMARY KEY,
+--   article_id INT,
+--   author VARCHAR(255),
+--   created_at DATE,
+--   updated_at DATE,
+--   FOREIGN KEY (article_id) REFERENCES Articles(article_id)
+-- );
+
+-- INSERT INTO Authors (author_id, name, email, bio, created_at, updated_at)
+-- VALUES
+-- (1, 'ani', 'ani@mail.com', 'I am a writer.', '2023-01-01', '2023-07-01'),
+-- (2, 'vai', 'vai@mail.com', 'Passionate about writing', '2023-01-01', '2023-01-08'),
+-- (3, 'rj', 'rj@mail.com', 'I am a writer.', '2023-01-01', '2023-07-01'),
+-- (4, 'suraj', 'suraj@mail.com', 'Passionate about writing', '2023-01-01', '2023-01-08')
+-- ;
+
+-- INSERT INTO Categories (category_id, name)
+-- VALUES
+-- (1, 'Technology'),
+-- (2, 'Science'),
+-- (3, 'Business');
+
+
+-- INSERT INTO Articles (article_id, title, content, author_id, category_id, published_at, created_at, updated_at)
+-- VALUES
+-- (1, 'Tech Trends', 'Technology today is evolving at a rapid pace, enabling faster change and progress, causing an acceleration of the rate of change.', 1, 1, '2023-01-02', '2023-01-02', '2023-01-02'),
+-- (2, 'The Science', 'any system of knowledge that is concerned with the physical world and its phenomena and that entails unbiased observations and systematic experimentation', 2, 2, '2023-01-03', '2023-01-03', '2023-01-03');
+
+-- ALTER TABLE comments
+-- ADD comment text;
+
+-- select * FROM comments;
+-- INSERT INTO Comments (comment_id, article_id, author, comment, created_at, updated_at)
+-- VALUES
+-- (1, 1, 'ani', 'Great article!', '2023-01-01', '2023-01-01'),
+-- (2, 1, 'vai', 'Well written.', '2023-01-02', '2023-01-02'),
+-- (3, 2, 'raj', 'Interesting topic.', '2023-01-03', '2023-01-03');
+
+
+
+--view all
+-- SELECT * FROM articles;
+
+--view article with their authors
+-- SELECT articles.*, authors.name AS author_name
+-- FROM articles
+-- JOIN authors ON articles.author_id = authors.author_id;
+
+--view specific article
+-- SELECT *FROM articles
+-- WHERE article_id = 2;
+
+--view specific commnets
+-- SELECT *FROM Comments WHERE article_id = 1;
+
+--view artcle with specific date or within
+-- SELECT *
+-- FROM Articles WHERE published_at BETWEEN '2023-01-01' AND '2023-12-31';
+
