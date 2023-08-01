@@ -2,9 +2,10 @@
 
 import {Model,DataTypes} from 'sequelize';
 import { sequelize } from '../connection';
-
+import { User } from './user';
 
 class Address extends Model {
+      address_id!:number;
        address_line1!:String;
        address_line2!:String;
        landmark!:String;
@@ -19,6 +20,11 @@ class Address extends Model {
 
     Address.init(
         {
+          address_id:{
+            type : DataTypes.INTEGER,
+            autoIncrement : true,
+            primaryKey : true
+        },
           address_line1: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -71,6 +77,11 @@ class Address extends Model {
         await Address.sync({alter: true});
     })();
     
+    
+    Address.belongsTo(User, {
+        foreignKey: 'user_id',
+        as: 'user', 
+      });
     
 export {Address};
 

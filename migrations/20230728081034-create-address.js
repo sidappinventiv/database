@@ -25,10 +25,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       address_type: {
-        type: Sequelize.ENUM
+        type: Sequelize.ENUM('Home','Work','Others')
+
       },
       zip_code: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       country: {
         type: Sequelize.STRING
@@ -37,7 +38,7 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       user_id: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

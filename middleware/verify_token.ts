@@ -14,6 +14,8 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
 
       res.json( (<any>req).User )
       next(); 
+
+
     } catch (err) {
       return res.status(403).json({ message: 'Invalid token' });
     }

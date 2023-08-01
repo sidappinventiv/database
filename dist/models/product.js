@@ -1,4 +1,5 @@
 "use strict";
+// src/models/Product.ts
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -9,68 +10,76 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Address = void 0;
+exports.Product = void 0;
 const sequelize_1 = require("sequelize");
 const connection_1 = require("../connection");
-const user_1 = require("./user");
-class Address extends sequelize_1.Model {
+const image_1 = require("./image");
+var Status;
+(function (Status) {
+    Status["Active"] = "active";
+    Status["NA"] = "na";
+})(Status || (Status = {}));
+class Product extends sequelize_1.Model {
 }
-exports.Address = Address;
-Address.init({
-    address_id: {
+exports.Product = Product;
+Product.init({
+    product_id: {
         type: sequelize_1.DataTypes.INTEGER,
+        primaryKey: true,
         autoIncrement: true,
-        primaryKey: true
     },
-    address_line1: {
+    product_name: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    address_line2: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: true,
-    },
-    landmark: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: true,
-    },
-    city: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    state: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    address_type: {
-        type: sequelize_1.DataTypes.ENUM('Home', 'Work', 'Others'),
         allowNull: false,
     },
     user_id: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
-    zip_code: {
-        type: sequelize_1.DataTypes.INTEGER,
+    bidding_amt: {
+        type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
     },
-    country: {
-        type: sequelize_1.DataTypes.STRING,
+    bidder_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: true,
+    },
+    base_price: {
+        type: sequelize_1.DataTypes.FLOAT,
         allowNull: false,
+    },
+    description: {
+        type: sequelize_1.DataTypes.TEXT,
+        allowNull: false,
+    },
+    buyer_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: true,
+    },
+    address_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: true,
     },
     status: {
-        type: sequelize_1.DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
+        type: sequelize_1.DataTypes.ENUM(Status.Active, Status.NA),
+        allowNull: true,
+    },
+    created_at: {
+        type: sequelize_1.DataTypes.DATE,
+        defaultValue: sequelize_1.DataTypes.NOW,
+    },
+    updated_at: {
+        type: sequelize_1.DataTypes.DATE,
+        defaultValue: sequelize_1.DataTypes.NOW,
     },
 }, {
     sequelize: connection_1.sequelize,
-    modelName: 'Address',
+    modelName: 'Product'
 });
 (() => __awaiter(void 0, void 0, void 0, function* () {
-    yield Address.sync({ alter: true });
+    yield Product.sync({ alter: true });
 }))();
-Address.belongsTo(user_1.User, {
-    foreignKey: 'user_id',
-    as: 'user',
+Product.hasMany(image_1.Image, {
+    foreignKey: 'product_id',
+    as: 'images',
 });

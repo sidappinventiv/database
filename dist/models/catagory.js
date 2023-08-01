@@ -9,68 +9,44 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Address = void 0;
+exports.Category = void 0;
 const sequelize_1 = require("sequelize");
 const connection_1 = require("../connection");
-const user_1 = require("./user");
-class Address extends sequelize_1.Model {
+class Category extends sequelize_1.Model {
 }
-exports.Address = Address;
-Address.init({
-    address_id: {
+exports.Category = Category;
+Category.init({
+    id: {
         type: sequelize_1.DataTypes.INTEGER,
+        primaryKey: true,
         autoIncrement: true,
-        primaryKey: true
     },
-    address_line1: {
+    category_name: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
     },
-    address_line2: {
+    subcategories: {
         type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
+    createdAt: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW,
+    },
+    updatedAt: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW,
+    },
+    image: {
+        type: sequelize_1.DataTypes.BLOB,
         allowNull: true,
-    },
-    landmark: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: true,
-    },
-    city: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    state: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    address_type: {
-        type: sequelize_1.DataTypes.ENUM('Home', 'Work', 'Others'),
-        allowNull: false,
-    },
-    user_id: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
-    zip_code: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-    },
-    country: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false,
-    },
-    status: {
-        type: sequelize_1.DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
     },
 }, {
     sequelize: connection_1.sequelize,
-    modelName: 'Address',
+    modelName: 'Category',
 });
 (() => __awaiter(void 0, void 0, void 0, function* () {
-    yield Address.sync({ alter: true });
+    yield Category.sync({ alter: true });
 }))();
-Address.belongsTo(user_1.User, {
-    foreignKey: 'user_id',
-    as: 'user',
-});

@@ -16,16 +16,29 @@ const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
 const connection_1 = require("./connection");
 const dotenv_1 = __importDefault(require("dotenv"));
-const user_1 = require("./models/user");
 const routes_1 = require("./route/routes");
-const address_1 = require("./models/address");
 dotenv_1.default.config();
+const ioredis_1 = require("ioredis");
+const redisClient = ioredis_1.Redis.createClient();
+const options = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'API FOR MONGODB',
+            version: '1.0.0'
+        },
+        servers: [
+            {
+                url: 'http://localhost:3000/'
+            }
+        ]
+    },
+    apis: ['./routes/onboard.ts']
+};
 (0, connection_1.dbconn)();
-new user_1.User();
-new address_1.Address();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-app.use("/api/user", routes_1.router);
+app.use("/api", routes_1.router);
 app.listen(process.env.PORT, () => __awaiter(void 0, void 0, void 0, function* () {
     // dbconn();
     console.log(`server listing on ${process.env.PORT}`);
