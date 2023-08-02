@@ -8,15 +8,17 @@ import { router } from './route/routes';
 dotenv.config();
 import { Redis } from 'ioredis';
 import connectRedis from 'connect-redis'
-
-
-
+import * as path from 'path';
+const swaggerUi = require('swagger-ui-express')
+import YAML from 'yamljs';
+const swaggerDocument = YAML.load(path.join(__dirname,'./swagger.yaml'));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 const redisClient = Redis.createClient();
 const options ={
     definition:{
         openapi:'3.0.0',
         info:{
-            title:'API FOR MONGODB',
+            title:'API FOR SEQEL',
             version:'1.0.0'
         },
         servers:[
@@ -25,7 +27,7 @@ const options ={
             }
         ]
     },
-    apis:['./routes/onboard.ts']
+    apis:['./routes/routes.ts']
 }
 
 dbconn();

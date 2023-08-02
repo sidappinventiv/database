@@ -1,0 +1,48 @@
+# swagger.yaml
+
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: ADVERTISEMENT
+
+paths:
+  /api/loginuser:
+    post:
+      summary: login User
+      description: authenticate nd genrate tokel
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+          
+      responses:
+        '200':
+          description: Login successful
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+              token:
+                type: string
+        '404':
+          description: User not found
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+        '500':
+          description: An error occurred during login
+          schema:
+            type: object
+            properties:
+              error:
+                type: string

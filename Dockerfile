@@ -9,7 +9,8 @@ RUN npm i
 COPY . .
 
 ENV PORT=3000
-#    //CODE BINDING IS DONE USING EXPOS
+#    //CODE BINDING IS DONE USING
 EXPOSE 3000
+ 
+CMD [ "npm","start"]
 
-CMD [ "npm","start" ]

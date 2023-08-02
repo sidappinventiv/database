@@ -12,6 +12,7 @@ class Image extends Model{
   public created_at!: Date;
   public updated_at!: Date;
   public product_id!: number;
+  static image: Buffer[];
 }
 
 Image.init(

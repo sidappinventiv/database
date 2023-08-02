@@ -1,14 +1,12 @@
 import express from 'express';
 import { verifyToken } from '../middleware/verify_token';
 import { user_by_id ,loginuser,logoutUser,signup,getalluser} from '../controller/onboard';
-import { uploadProductImages,addProductDetails} from '../controller/product_c';
+import { imageUpload,addProductDetails} from '../controller/product_c';
 import { category_add } from '../controller/catagory';
 import {createaddress, updateaddress ,deleteaddress} from '../controller/address';
 import multer from 'multer';
 
-
-const storage = multer.memoryStorage(); 
-const upload = multer({ storage });
+import { upload } from '../middleware/multer';
 
 
 
@@ -16,7 +14,7 @@ const router = express.Router();
 
 const app = express();
 app.use(router);
-router.post('/uploadProductImages', upload.array('image', 5), uploadProductImages);
+router.post('/imageUpload', upload.array('image', 5), imageUpload);
 router.post('/createaddress',createaddress)
 router.post("/addProductDetails",verifyToken,addProductDetails);
 router.get("/getalluser",getalluser);
