@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.dbconn = exports.sequelize = void 0;
 const sequelize_1 = require("sequelize");
 exports.sequelize = new sequelize_1.Sequelize('advertisement', 'postgres', '    ', {
-    host: 'localhost',
+    host: '192.168.2.153',
     dialect: 'postgres',
 });
 const dbconn = () => __awaiter(void 0, void 0, void 0, function* () {

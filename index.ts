@@ -13,7 +13,7 @@ const swaggerUi = require('swagger-ui-express')
 import YAML from 'yamljs';
 const swaggerDocument = YAML.load(path.join(__dirname,'./swagger.yaml'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-const redisClient = Redis.createClient();
+// const redisClient = Redis.createClient();
 const options ={
     definition:{
         openapi:'3.0.0',

@@ -18,11 +18,15 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const bcrypt_2 = require("bcrypt");
 const create_token_1 = require("../middleware/create_token");
 const session_1 = require("../models/session");
-const redis_1 = require("redis");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const client = (0, redis_1.createClient)();
-client.on('error', err => console.log('Redis Client Error', err));
-client.connect();
+const ioredis_1 = __importDefault(require("ioredis"));
+const client = new ioredis_1.default({
+    host: '192.168.2.153',
+    port: 6379,
+});
+// const client = createClient();
+// client.on('error', err => console.log('Redis Client Error', err));
+// client.connect();
 const loginuser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { username, password } = req.body;

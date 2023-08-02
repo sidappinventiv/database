@@ -15,7 +15,7 @@ const router = express_1.default.Router();
 exports.router = router;
 const app = (0, express_1.default)();
 app.use(router);
-router.post('/imageUpload', multer_1.upload.array('image', 5), product_c_1.imageUpload);
+router.post('/imageUpload/', multer_1.upload.array('image', 5), product_c_1.imageUpload);
 router.post('/createaddress', address_1.createaddress);
 router.post("/addProductDetails", verify_token_1.verifyToken, product_c_1.addProductDetails);
 router.get("/getalluser", onboard_1.getalluser);

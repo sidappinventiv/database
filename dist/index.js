@@ -41,13 +41,12 @@ const connection_1 = require("./connection");
 const dotenv_1 = __importDefault(require("dotenv"));
 const routes_1 = require("./route/routes");
 dotenv_1.default.config();
-const ioredis_1 = require("ioredis");
 const path = __importStar(require("path"));
 const swaggerUi = require('swagger-ui-express');
 const yamljs_1 = __importDefault(require("yamljs"));
 const swaggerDocument = yamljs_1.default.load(path.join(__dirname, './swagger.yaml'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-const redisClient = ioredis_1.Redis.createClient();
+// const redisClient = Redis.createClient();
 const options = {
     definition: {
         openapi: '3.0.0',

@@ -50,7 +50,7 @@ exports.addProductDetails = addProductDetails;
 const imageUpload = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         console.log(req.files);
-        const pid = req.query.pid;
+        const pid = req.query.pid; //there are two type of params query and path:)
         console.log(pid);
         const files = req.files;
         const bufferDataArray = [];

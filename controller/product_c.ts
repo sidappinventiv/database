@@ -45,7 +45,7 @@ export const addProductDetails= async(req: Request,res: Response) => {
   export const imageUpload = async (req: Request, res: Response) => {
     try {
       console.log(req.files);
-      const pid = req.query.pid;
+      const pid = req.query.pid;   //there are two type of params query and path:)
       console.log(pid)
       const files = req.files as Express.Multer.File[]; 
       const bufferDataArray: Buffer[] = [];

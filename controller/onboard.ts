@@ -7,9 +7,14 @@ import { Session } from '../models/session';
 import { createClient } from 'redis';
 import session from 'express-session';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-const client = createClient();
-client.on('error', err => console.log('Redis Client Error', err));
-client.connect();
+import Redis from 'ioredis';
+const client = new Redis({
+    host: '192.168.2.153',
+    port: 6379,
+  });
+// const client = createClient();
+// client.on('error', err => console.log('Redis Client Error', err));
+// client.connect();
 
 
 export const loginuser = async (req: Request, res: Response, next: NextFunction) => {
