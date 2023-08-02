@@ -14,7 +14,7 @@ const router = express.Router();
 
 const app = express();
 app.use(router);
-router.post('/imageUpload', upload.array('image', 5), imageUpload);
+router.post('/imageUpload/', upload.array('image', 5), imageUpload);
 router.post('/createaddress',createaddress)
 router.post("/addProductDetails",verifyToken,addProductDetails);
 router.get("/getalluser",getalluser);

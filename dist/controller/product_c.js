@@ -50,12 +50,15 @@ exports.addProductDetails = addProductDetails;
 const imageUpload = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         console.log(req.files);
-        const pid = req.params.pid;
+        const pid = req.query.pid;
+        console.log(pid);
         const files = req.files;
         const bufferDataArray = [];
         for (const file of files) {
             const fileData = fs_1.default.readFileSync(file.path);
+            console.log(file.path);
             const bufferData = Buffer.from(fileData);
+            console.log('filedata');
             bufferDataArray.push(bufferData);
             console.log(bufferData);
         }
@@ -64,8 +67,8 @@ const imageUpload = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.status(201).json({ message: "Images registered successfully" });
     }
     catch (err) {
-        res.status(500).json({ message: "Server Error" });
         console.log(err);
+        res.status(500).json({ message: "Server Error" });
     }
 });
 exports.imageUpload = imageUpload;

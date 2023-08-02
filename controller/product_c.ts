@@ -45,13 +45,20 @@ export const addProductDetails= async(req: Request,res: Response) => {
   export const imageUpload = async (req: Request, res: Response) => {
     try {
       console.log(req.files);
-      const pid = req.params.pid;
+      const pid = req.query.pid;
+      console.log(pid)
       const files = req.files as Express.Multer.File[]; 
       const bufferDataArray: Buffer[] = [];
-  
+      
+      
+      
+
       for (const file of files) {
         const fileData = fs.readFileSync(file.path);
+        
+        console.log(file.path);
         const bufferData = Buffer.from(fileData);
+        console.log('filedata')
         bufferDataArray.push(bufferData);
         console.log(bufferData);
       }
@@ -60,8 +67,8 @@ export const addProductDetails= async(req: Request,res: Response) => {
       console.log(images);
       res.status(201).json({ message: "Images registered successfully" });
     } catch (err) {
-      res.status(500).json({ message: "Server Error" });
       console.log(err);
+      res.status(500).json({ message: "Server Error" });
     }
   };
   
