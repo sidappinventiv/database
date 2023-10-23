@@ -6,12 +6,12 @@ import bodyParser from 'koa-bodyparser';
 import dotenv from 'dotenv';
 import {commonRoutes} from './routes/commonroute';
 
-
+import {logError} from "logging-colorify"
 
 dotenv.config();
 app.use(bodyParser());
 
-
+logError("this is the main file error ")
 
 dbconn()
   .then(() => {
